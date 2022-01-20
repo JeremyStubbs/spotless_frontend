@@ -7,12 +7,9 @@ const Playlist = (props) => {
 
 	//Get playlists from database
 	async function showPlaylists() {
-		const response = await fetch(
-			'https://spotlessproject.herokuapp.com/playlists',
-			{
-				method: 'GET',
-			}
-		);
+		const response = await fetch('http://localhost:4000/playlists', {
+			method: 'GET',
+		});
 		const data = await response.json();
 		var filtered = data.playlists.filter(function (el) {
 			return el.name != 'favorites';
@@ -23,7 +20,7 @@ const Playlist = (props) => {
 	useEffect(() => {
 		showPlaylists();
 	}, []);
-	
+
 	//Set state to songs within playlist
 	const showSelectedPlaylist = (item) => {
 		setSelectedPlaylist(item.songs);
@@ -32,18 +29,15 @@ const Playlist = (props) => {
 	async function deletePlaylist(item) {
 		console.log(item);
 		const response = await fetch(
-			`https://spotlessproject.herokuapp.com/playlists/${item.name}`,
+			`http://localhost:4000/playlists/${item.name}`,
 			{
 				method: 'DELETE',
 			}
 		);
 		//Get all remaining playlists and set state to them
-		const response2 = await fetch(
-			'https://spotlessproject.herokuapp.com/playlists',
-			{
-				method: 'GET',
-			}
-		);
+		const response2 = await fetch('http://localhost:4000/playlists', {
+			method: 'GET',
+		});
 		const data = await response2.json();
 		var filtered = data.playlists.filter(function (el) {
 			return el.name != 'favorites';

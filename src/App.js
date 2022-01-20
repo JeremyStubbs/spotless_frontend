@@ -15,7 +15,7 @@ function App() {
 	//add favs if doesn't exist with following 2 functions
 	async function handleClick2(e) {
 		const response = await fetch(
-			'https://spotlessproject.herokuapp.com/playlists',
+			'http://localhost:4000/playlists',
 			{
 				method: 'POST',
 				headers: {
@@ -28,7 +28,7 @@ function App() {
 
 	async function showFavs() {
 		const response = await fetch(
-			'https://spotlessproject.herokuapp.com/playlists/favorites',
+			'http://localhost:4000/playlists/favorites',
 			{
 				method: 'GET',
 			}
@@ -96,6 +96,3 @@ function App() {
 }
 
 export default App;
-
-
-

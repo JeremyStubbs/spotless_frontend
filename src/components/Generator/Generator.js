@@ -23,12 +23,9 @@ const Generator = ({ songs, setSongs }) => {
 	async function handleClick(e) {
 		e.preventDefault();
 		setSongs([]);
-		const response = await fetch(
-			`https://spotlessproject.herokuapp.com/songs/${genre}`,
-			{
-				method: 'GET',
-			}
-		);
+		const response = await fetch(`http://localhost:4000/songs/${genre}`, {
+			method: 'GET',
+		});
 		const data = await response.json();
 		setSongs(data.songs);
 	}
@@ -62,18 +59,14 @@ const Generator = ({ songs, setSongs }) => {
 
 	//Post playlist
 	async function handleClick2(e) {
-		const response = await fetch(
-			'https://spotlessproject.herokuapp.com/playlists',
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(playlist),
-			}
-		);
+		const response = await fetch('http://localhost:4000/playlists', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(playlist),
+		});
 	}
-
 
 	//Create return elements
 	//Create list of songs you pulled from database
@@ -118,16 +111,13 @@ const Generator = ({ songs, setSongs }) => {
 
 	//PUT: update favorites to include new song
 	async function postFavs() {
-		const response = await fetch(
-			'https://spotlessproject.herokuapp.com/playlists/favorites',
-			{
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(favoriteSongs),
-			}
-		);
+		const response = await fetch('http://localhost:4000/playlists/favorites', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(favoriteSongs),
+		});
 	}
 
 	return (

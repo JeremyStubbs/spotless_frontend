@@ -8,7 +8,7 @@ const Favorites = (props) => {
 	//Get "favorites" playlist from playlists database and set state to it
 	async function showFavs() {
 		const response = await fetch(
-			'https://spotlessproject.herokuapp.com/playlists/favorites',
+			'http://localhost:4000/playlists/favorites',
 			{
 				method: 'GET',
 			}
