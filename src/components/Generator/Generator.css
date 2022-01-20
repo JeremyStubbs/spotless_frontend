@@ -1,0 +1,142 @@
+.generator-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr, 0.5fr, 5fr 3fr;
+    font-size: 0.75rem;
+}
+
+.new-playlist-form {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.checkbox-form-container {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.checkbox-container input {
+    margin: 0.25rem;
+}
+
+.new-playlist-input::placeholder {
+    color: black;
+}
+
+.generator-btn {
+    min-width: 50vw;
+}
+
+.generator-btn::placeholder {
+    color: black;
+}
+
+.save-playlist-btn {
+    margin-top: 1rem;
+}
+
+.generated-playlist-container {
+    grid-column: 1/3;
+    grid-row: 3/4;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    min-width: 80vw;
+    max-width: 80vw;
+}
+
+.generated-playlist {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.generated-playlist li {
+    border: 1px solid black;
+    padding: 0.25rem;
+}
+
+.album-artwork {
+  display: none;
+}
+
+.add-to-playlist-list {
+    grid-column: 1/3;
+    grid-row: 4/5;
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.add-to-playlist-list li {
+    margin-right: 1rem;
+}
+
+@media screen and (max-width: 414px) {
+    .checkbox-container {
+        font-size: 0.70rem;
+    }
+    .generator-btn {
+        font-size: 0.70rem;
+    }
+    .new-playlist-input {
+        font-size: 0.70rem;
+    }
+    .save-playlist-btn {
+        font-size: 0.70rem;
+    }
+    .generated-playlist {
+        font-size: 0.70rem;
+    }
+    .add-to-playlist-list {
+        font-size: 0.70rem;
+    }
+    .song-btns {
+        font-size: 0.70rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .checkbox-container {
+        font-size: 1.0rem;
+    }
+    .generator-btn {
+        font-size: 1.0rem;
+    }
+    .new-playlist-input {
+        font-size: 1.0rem;
+    }
+    .save-playlist-btn {
+        font-size: 1.0rem;
+    }
+    .generated-playlist {
+        font-size: 1.0rem;
+    }
+    .add-to-playlist-list {
+        font-size: 1.0rem;
+    }
+    .new-playlist-form {
+        margin: 0 15rem;
+    }
+    .generator-btn {
+        min-width: 25vw;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .new-playlist-form {
+        margin: 0 20rem;
+    }
+    .generator-btn {
+        min-width: 32vw;
+    }
+}

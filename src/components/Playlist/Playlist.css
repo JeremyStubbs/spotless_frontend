@@ -1,0 +1,45 @@
+.playlist-container {
+    margin: 2rem;
+    text-align: center;
+}
+
+.single-playlist {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.playlist-headers {
+    text-align: center;
+    margin: 1rem;
+}
+
+.song-list-container {
+    text-align: center;
+}
+
+@media screen and (max-width: 414px) {
+    .single-playlist {
+        font-size: 0.80rem;
+    }
+    .single-playlist-btns {
+        font-size: 0.70rem;
+    }
+    .song-list-container {
+        font-size: 0.70rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .single-playlist {
+        font-size: 1.0rem;
+    }
+    .single-playlist-btns {
+        font-size: 1.0rem;
+    }
+    .song-list-container {
+        font-size: 1.0rem;
+    }
+}

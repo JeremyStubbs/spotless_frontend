@@ -1,0 +1,26 @@
+.favorites-list {
+    margin-top: 0.5rem;
+}
+
+.favorites-container {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 414px) {
+    .favorites-list {
+        font-size: 0.70rem;
+    }
+}
+
+@media screen and (min-width: 414px) {
+    .favorites-list {
+        font-size: 0.70rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .favorites-list {
+        font-size: 0.9rem;
+    }
+}

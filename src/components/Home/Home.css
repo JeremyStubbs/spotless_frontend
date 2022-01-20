@@ -1,0 +1,80 @@
+.home-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.home-header {
+    margin-bottom: 3rem;
+    font-size: 4.5rem;
+}
+
+.spot-header {
+    color: gray;
+}
+
+.home-form-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0 5rem
+}
+
+.username-input {
+    border: none;
+    outline: 1px solid black;
+    padding: 0.25rem;
+}
+
+.username-input::placeholder {
+    color: black;
+}
+
+.password-input {
+    border: none;
+    outline: 1px solid black;
+    padding: 0.25rem;
+}
+
+.password-input::placeholder {
+    color: black;
+}
+
+.login-btn {
+    border: none;
+    outline: 1px solid black;
+    padding: 0.25rem;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+}
+
+.sign-up-btn {
+    border: none;
+    outline: 1px solid black;
+    padding: 0.25rem;
+}
+
+.sign-up-btn:hover {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 688px) {
+    .home-form-container {
+        margin: 0 15rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .home-form-container {
+        margin: 0 25rem;
+    }
+}
+
+@media screen and (min-width: 1296px) {
+    .home-form-container {
+        margin: 0 35rem;
+    }
+}
