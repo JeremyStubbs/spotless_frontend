@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './Playlist.css';
-const Playlist = (props) => {
-	//Make some empty array states
+const Playlist = () => {
+	//Make empty states for playlist and the playlist you'd like to edit
 	const [playlist, setPlaylist] = useState([]);
 	const [selectedPlaylist, setSelectedPlaylist] = useState([]);
 
+	const url_songs = ''
+	const url_playlists = ''
+
 	//Get playlists from database
 	async function showPlaylists() {
-		const response = await fetch('http://localhost:4000/playlists', {
+		const response = await fetch(`${url_playlists}/all?name=me`, {
 			method: 'GET',
 		});
 		const data = await response.json();
-		var filtered = data.playlists.filter(function (el) {
-			return el.name != 'favorites';
+		var filtered = data.Items.filter(function (el) {
+			return el.name != 'favs';
 		});
 		setPlaylist(filtered);
 	}
@@ -26,21 +29,22 @@ const Playlist = (props) => {
 		setSelectedPlaylist(item.songs);
 	};
 	//Delete (item is playlist, item.name is param used in findOneAndDelete)
-	async function deletePlaylist(item) {
-		console.log(item);
-		const response = await fetch(
-			`http://localhost:4000/playlists/${item.name}`,
-			{
+	async function deletePlaylist( item) {
+		console.log(item)
+		const response = await fetch(`${url_playlists}/items`,{
 				method: 'DELETE',
+				body: JSON.stringify({name: item.name, owner: "me"})
 			}
 		);
+		const data = await response.json()
+		console.log("response ", response, data)
 		//Get all remaining playlists and set state to them
-		const response2 = await fetch('http://localhost:4000/playlists', {
+		const response2 = await fetch(`${url_playlists}/all?name=me`, {
 			method: 'GET',
 		});
-		const data = await response2.json();
-		var filtered = data.playlists.filter(function (el) {
-			return el.name != 'favorites';
+		const data2 = await response2.json();
+		var filtered = data2.Items.filter(function (el) {
+			return el.name != 'favs';
 		});
 		setPlaylist(filtered);
 	}

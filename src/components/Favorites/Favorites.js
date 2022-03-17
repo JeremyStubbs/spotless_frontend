@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './Favorites.css';
 
-const Favorites = (props) => {
+const Favorites = () => {
+
+	const url_songs = ''
+	const url_playlists = ''
 	//Set state to empty array
 	const [favorites, setFavorites] = useState([]);
 
 	//Get "favorites" playlist from playlists database and set state to it
 	async function showFavs() {
-		const response = await fetch(
-			'http://localhost:4000/playlists/favorites',
-			{
-				method: 'GET',
+		const response = await fetch(`${url_playlists}/items?name=favs&owner=me`,{
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
 			}
-		);
-		const data = await response.json();
-		setFavorites(data.playlists[0].songs);
+		})
+		const data = await response.json()
+		setFavorites(data.Item.songs);
 	}
 
 	//useeffect so that above function runs on mount
 	useEffect(() => {
+		console.log('showing favs from favorites component')
 		showFavs();
 	}, []);
 

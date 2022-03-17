@@ -1,42 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import './Generator.css';
 
-const Generator = ({ songs, setSongs }) => {
+const Generator = ({ songs, setSongs,  }) => {
 	//Set states
 	//This is set by box select in form
 	const [genre, setGenre] = useState([]);
-
-	//Make playlist (object) in parts: name (string) and songs (array) separately
 	const [playlistName, setPlaylistName] = useState('');
 	const [playlistSongs, setPlaylistSongs] = useState([]);
-	const [playlist, setPlaylist] = useState({ name: '', songs: [] });
 
-	//set favorite to empty array
-	const [favoriteSongs, setFavoriteSongs] = useState([]);
+	const url_songs = ''
+	const url_playlists = ''
+	
 
 	//Set genre to box you selected
-	const handleChange = (event) => {
+	const genreFunction = (event) => {
 		setGenre(event.target.value);
 	};
 
 	//Make api call to songs collection for all that match that genre, then set songs to songs returned
-	async function handleClick(e) {
+	async function getSongs(e) {
 		e.preventDefault();
 		setSongs([]);
-		const response = await fetch(`http://localhost:4000/songs/${genre}`, {
+		const response = await fetch(`${url_songs}/items/genre/${genre}`, {
 			method: 'GET',
 		});
 		const data = await response.json();
-		setSongs(data.songs);
+		setSongs(data.Items);
 	}
 
 	//Set playlist name to what you typed
-	const handleChange2 = (event) => {
+	const playlistNameFunction = (event) => {
 		setPlaylistName(event.target.value);
 	};
 
 	//Set playlists songs to ones you clicked
-	const addToPlaylist = (song) => {
+	const updatePlaylist = (song) => {
 		setPlaylistSongs([...playlistSongs, song]);
 	};
 
@@ -47,42 +45,36 @@ const Generator = ({ songs, setSongs }) => {
 		setPlaylistSongs(newList);
 	};
 
-	//Combine name and songs to make playlist
-	const setting = () => {
-		setPlaylist({ name: playlistName, songs: playlistSongs });
-	};
-
-	//change playlist anytime name or songs change
-	useEffect(() => {
-		setting();
-	}, [playlistSongs, playlistName]);
 
 	//Post playlist
 	async function handleClick2(e) {
-		const response = await fetch('http://localhost:4000/playlists', {
-			method: 'POST',
+		e.preventDefault();
+		let playlist = { name: playlistName, owner: "me", songs: playlistSongs }
+		const response = await fetch(`${url_playlists}/items`, {
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(playlist),
+			body:JSON.stringify(playlist),
 		});
+		const data = await response.json()
 	}
 
 	//Create return elements
 	//Create list of songs you pulled from database
 	const songList = songs.map((song) => (
-		<li className='song-list' key={song.title}>
-			{song.title} - {song.artist} -{' '}
+		<li className='song-list' key={song.SongTitle}>
+			{song.SongTitle} - {song.Artist} -{' '}
 			<a href={song.trackLink} target='_blank' rel='noreferrer'>
 				Listen
 			</a>{' '}
 			-{' '}
-			<button className='song-btns' onClick={() => addToPlaylist(song.title)}>
+			<button className='song-btns' onClick={() => updatePlaylist(song.SongTitle)}>
 				Add
 			</button>{' '}
 			<button
 				className='song-btns'
-				onClick={() => addToFavoriteSongs(song.title)}>
+				onClick={() => addToFavoriteSongs(song.SongTitle)}>
 				Fav
 			</button>
 		</li>
@@ -99,33 +91,38 @@ const Generator = ({ songs, setSongs }) => {
 		</div>
 	));
 
-	//Every time you click add to favs you set the above state to that song
-	const addToFavoriteSongs = (fav) => {
-		setFavoriteSongs([fav]);
-	};
-
-	//when state changes run PUT api call on favs playlist
-	useEffect(() => {
-		postFavs();
-	}, [favoriteSongs]);
-
-	//PUT: update favorites to include new song
-	async function postFavs() {
-		const response = await fetch('http://localhost:4000/playlists/favorites', {
+	
+	//Every time you click add to favs you set the above state to current playlist + that song
+	async function addToFavoriteSongs(fav) {
+		const response = await fetch(`${url_playlists}/items?name=favs&owner=me`,{
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		})
+		const data = await response.json()
+		let playlist = {"name":"favs", "owner":"me","songs":[...data.Item.songs]};
+		if (playlist.songs.includes(fav) == false){
+			playlist = {name:'favs', owner: 'me', songs: [...data.Item.songs,fav]};
+		}
+		const response2 = await fetch(`${url_playlists}/items`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(favoriteSongs),
+			body: JSON.stringify(playlist),
 		});
+		const data2 = await response2.json()
 	}
+
+
 
 	return (
 		<div className='generator-container'>
 			<form className='new-playlist-form' onSubmit={handleClick2}>
 				<input
 					className='new-playlist-input'
-					onChange={handleChange2}
+					onChange={playlistNameFunction}
 					type='text'
 					name='artistName'
 					placeholder='Playlist Name'
@@ -137,8 +134,8 @@ const Generator = ({ songs, setSongs }) => {
 			</form>
 			<form
 				className='checkbox-form-container'
-				onSubmit={handleClick}
-				onChange={handleChange}>
+				onSubmit={getSongs}
+				onChange={genreFunction}>
 				<div className='checkbox-container'>
 					<input type='radio' id='rock' name='genre' value='rock' />
 					<label for='rock'>Rock</label>
