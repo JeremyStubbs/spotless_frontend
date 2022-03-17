@@ -2,33 +2,10 @@
 
 ## Description
 
-A new music app called, "SpotLess". This revolutionary music app will allow users to create randomized music playlists from the Spotify API. Users will be able to generate randomized playlists using specific track details such as: genre, decade, tempo, etc. Users will also be able to favorite these randomly selected tracks to store into their own favorites playlist. 
+This was begun in my general assembly course. Since then I have extensively edited it, although the functionality remains the same. The app allows you to create playlists which are saved to a database (dynamodb), as well as favorite certain songs. The frontend is built using react functional componenets and deployed to github pages. The gh-pages branch is currently set to private, because I do not want to incur excessive costs to my aws account. Once I create a lambda authorizer that limits the number of api calls from a users ip address, I will make it public. 
 
 ## Project Links
 ( https://jeremystubbs.github.io/project3/)
-
-## Wireframes
-
-- [Mobile/Tablet/Desktop Wireframes](https://imgur.com/lItTEv3)
-- [React Architecture](https://i.imgur.com/xO8ddp2.png)
-
-#### MVP
-
-- Connection for front-end/back-end
-- API call
-- Adding favorites
-- Responsiveness
-- General CSS Styling
-
-#### PostMVP
-
-- Song snippets
-- Search functionality
-- User profile picture
-- Updating user info
-- Music playlist export
-- Login functionality
-- Text and general animations
 
 ## Components
 
@@ -42,30 +19,4 @@ A new music app called, "SpotLess". This revolutionary music app will allow user
 | Favorites | This will render the favorites component |
 | Team | This will render the team component |  
 
-## Time/Priority Matrix
 
-| Component | Priority | Estimated Time | Time Invested | Actual Time |
-| --- | :---: |  :---: | :---: | :---: |
-| Repos Set-up | H | 1hrs| 1 hrs | 1 hrs |
-| Backend Set-up | H | 2hrs| 1 hrs | 3 hrs |
-| API Set-up | H | 2hrs| 2 hrs | 8 hrs |
-| Nav | H | 2hrs| 1 hrs |  1 hrs |
-| Home | H | 2.5hrs| 1 hrs | 1 hrs |
-| Playlist Generator | H | 4hrs | 4 hrs | 8 hrs |
-| Profile | H | 3hrs | 1 hrs | 0 hrs |
-| Favorites | H | 3hrs | 3 hrs | 3 hrs |
-| Team | H | 2hrs | 1 hrs | 0 hrs |
-| General Layout | H | 3hrs | 1 hrs |1 hrs |
-| Responsiveness | H | 4hrs | 1 hrs | 1 hrs |
-| General CSS Styling | H | 4hrs | 3 hrs |3 hrs |
-| Login Authentication | H/M | 2hrs | 0 hrs | 0 hrs |
-| Song Snippets | M | 2hrs | 0 hrs | 0 hrs |
-| Music Export Functionality | M | 2hrs | 0 hrs | 0 hrs |
-| Animations | L | 3hrs| 0 hrs | 0 hrs |
-| Total | - | 41.5 hrs|  20 hrs | 30 hrs |
-
-## Additional Libraries
-ReactJS, TBD
-
-## Code Snippet
-TBD
