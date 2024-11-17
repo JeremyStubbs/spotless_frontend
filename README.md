@@ -2,7 +2,7 @@
 
 ## Description
 
-The app allows you to create playlists which are saved to a database (dynamodb). The frontend is built using react functional componenets and deployed to Amazon Amplify. In the future, I will add login with Auth0 and create a lambda authorizer that limits the number of api calls from an ip address. 
+The react app allows you to create playlists which are saved to a database (dynamodb). The frontend is built using react functional componenets and deployed to Amazon Amplify. In the future, I will add login with Auth0 and create a lambda authorizer that limits the number of api calls from an ip address. 
 
 
 ## Components
